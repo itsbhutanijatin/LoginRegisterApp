@@ -2,7 +2,9 @@
 <%@ page session="true" %>
 <%
     String username = (String) session.getAttribute("username");
-    if (username == null) {
+    String email = (String) session.getAttribute("email");
+
+    if (username == null || email == null) {
         response.sendRedirect("login.html");
     }
 %>
@@ -27,7 +29,12 @@
             text-align: center;
         }
         h2 {
+            margin-bottom: 10px;
+        }
+        p {
             margin-bottom: 20px;
+            font-size: 14px;
+            color: #555;
         }
         input[type="submit"] {
             padding: 10px 20px;
@@ -45,6 +52,7 @@
 <body>
     <div class="container">
         <h2>Welcome <%= username %>!</h2>
+        <p>Your Email: <%= email %></p>
         <form action="logout" method="post">
             <input type="submit" value="Logout">
         </form>
