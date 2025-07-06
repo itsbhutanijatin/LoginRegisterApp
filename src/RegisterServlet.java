@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
                 session.setAttribute("username", username);
 
                 // Redirect to home.jsp
-                response.sendRedirect("home.jsp");
+                response.sendRedirect("success.html");
             } else {
                 response.getWriter().println("Registration Failed!");
             }

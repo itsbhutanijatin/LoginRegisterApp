@@ -35,4 +35,9 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
+    <!-- Default landing page -->
+    <welcome-file-list>
+        <welcome-file>login.html</welcome-file>
+    </welcome-file-list>
+
 </web-app>

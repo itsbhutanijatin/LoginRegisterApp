@@ -24,7 +24,8 @@ public class LoginServlet extends HttpServlet {
             Connection conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/loginapp", "root", "123#Avenger");
 
-            String sql = "SELECT username FROM users WHERE email = ? AND password = ?";
+            // 🔄 id bhi select kar liya
+            String sql = "SELECT id, username FROM users WHERE email = ? AND password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, email);
             stmt.setString(2, password);
@@ -32,12 +33,13 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                // User matched
+                int id = rs.getInt("id");
                 String username = rs.getString("username");
+
                 HttpSession session = request.getSession();
+                session.setAttribute("id", String.valueOf(id)); //  id set in session
                 session.setAttribute("username", username);
                 session.setAttribute("email", email);
-
 
                 response.sendRedirect("home.jsp");
             } else {
